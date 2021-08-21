@@ -156,13 +156,20 @@ footer{
     }
 
     .movie-header h1{
-        position: absolute;
-        bottom: -100px;
-        font-size: 1rem;
+        position: relative;
+        margin-left: 0px;
+        margin-top: 0px;
+        display: flex;
+        height: fit-content;
+        bottom: 180px;
+        padding: 40px;
+        font-size: 1.5rem;
     }
 
-    .movie-header h1 .rating{
-        font-size: 0.8rem;
-        padding: 5px;
+    .movie-body{
+        position: relative;
+        padding: 40px;
+        bottom: 300px;
     }
+
 }
