@@ -7,6 +7,7 @@ const header = document.querySelector("header");
 const heading = document.getElementById("heading");
 const searchButton = document.getElementById("search-button")
 const searchText = document.getElementById("search-text")
+const genreBox = document.getElementById("genrebox")
 
 const BASE_URL = "https://api.themoviedb.org/3"
 const API_KEY = "f159f687d498f2b970da3bf8874e41fc"
@@ -20,6 +21,20 @@ let movieList = []
 let currentMoviesList = []
 let showingMovie = false
 let canLoad = true
+
+
+async function getGenerList () {
+    let result = await fetch(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}`);
+    result = await result.json();
+    console.log(result);
+    result.genres.forEach(e => {
+        genreBox.innerHTML += `
+            <a href="/?genre=${e.id}">${e.name}</a>
+        `;
+    })
+}
+
+getGenerList();
 
 async function searchMovie () {
     if(searchText.value == "")
