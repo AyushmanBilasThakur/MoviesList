@@ -72,9 +72,9 @@ async function requestAPI () {
         heading.innerText = `Search result for - ${searchedMovie}`
     }
     else if(genre!= null)
-        result = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&page=${currentPage}&with_genres=${genre}`)
+        result = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&page=${currentPage}&with_genres=${genre}&region=IN`)
     else 
-        result = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&page=${currentPage}`)
+        result = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&page=${currentPage}&region=IN`)
 
     result = await result.json();
     currentMoviesList = [...currentMoviesList,...result.results];
