@@ -144,10 +144,10 @@ footer{
 
 #genrebox{
     display: flex;
-    width: 100vw;
+    width: 90vw;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 20px;
+    margin: 20px auto;
     justify-content: center;
     align-items: center;
 }
