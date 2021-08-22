@@ -152,6 +152,10 @@ footer{
     align-items: center;
 }
 
+.logo{
+    width: 40px;
+}
+
 
 @media (max-width: 600px){
     .card-container{

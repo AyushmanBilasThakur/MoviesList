@@ -26,7 +26,6 @@ let canLoad = true
 async function getGenerList () {
     let result = await fetch(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}`);
     result = await result.json();
-    console.log(result);
     result.genres.forEach(e => {
         genreBox.innerHTML += `
             <a href="/?genre=${e.id}">${e.name}</a>
@@ -34,6 +33,11 @@ async function getGenerList () {
     })
 }
 
+async function getAvailableOTT(movie_id) {
+    let result = await fetch(`${BASE_URL}/movie/${movie_id}/watch/providers?api_key=${API_KEY}`)
+    result = await result.json();
+    return result.results.IN;
+}
 getGenerList();
 
 async function searchMovie () {
@@ -141,6 +145,10 @@ async function showmovie(movie_id) {
 
     let movie = await fetchMovieData(movie_id);
     showingMovie = true;
+
+    let ott = await getAvailableOTT(movie_id);
+    console.log(ott);
+
     movieOverviewHolder.innerHTML = `
         <img class="banner" src="${return_banner_path(movie.backdrop_path)}">
 
@@ -171,10 +179,22 @@ async function showmovie(movie_id) {
             
             </p>
 
-
             <br>
 
+            <h3>Watch it on</h3>
+            <br>
+            ${ott?.flatrate ? ott.flatrate.map(e => {
+                return `
+                    <img class="logo" src="${IMAGE_BASE_URL}/${e.logo_path}">
+                `
+            }).join("") : "It's not streamed in India"}
+
+            <br>
+            <br>    
             <button class="return-to-list" onclick="hideMovie()">Return To List</button>
+
+
+
         </div>
 
     `
